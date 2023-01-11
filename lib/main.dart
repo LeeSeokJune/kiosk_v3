@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kiosk_v3/screens/test_screen.dart';
+import 'package:kiosk_v3/screens/main_screen/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(2224, 1668),
+      designSize: const Size(600, 450),
       builder: ((context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: TestScreen(),
+          home: MainScreen(),
         );
       }),
     );
