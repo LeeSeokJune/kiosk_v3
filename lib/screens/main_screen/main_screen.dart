@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:kiosk_v3/components/style.dart';
+import 'package:kiosk_v3/controllers/display_controller.dart';
+import 'package:kiosk_v3/data/petfood.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
+  MainScreen({super.key});
+  var display_controller = Get.put(DisplayController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,17 +18,19 @@ class MainScreen extends StatelessWidget {
             width: 560.w,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [for (var index = 0; index < 20; index++) _petfood_form()],
-                  ),
-                  SizedBox(height: 10.h),
-                  Row(
-                    children: [for (var index = 0; index < 15; index++) _petfood_form()],
-                  ),
-                ],
+              child: Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][0].length; index++) _petfood_form(row: 0, index: index)],
+                    ),
+                    SizedBox(height: 10.h),
+                    Row(
+                      children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][1].length; index++) _petfood_form(row: 1, index: index)],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -34,7 +39,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _petfood_form() {
+  Widget _petfood_form({row, index}) {
     return Padding(
       padding: EdgeInsets.only(right: 20.w),
       child: Container(
@@ -50,7 +55,7 @@ class MainScreen extends StatelessWidget {
               'assets/images/A000001.png',
               width: 84.w,
             ),
-            Text('브랜드'),
+            Text('${main_petfood_list[display_controller.pet_type.value][row][index]["brand"]}'),
             Text('사료 이름'),
             SizedBox(height: 5.h),
             Text('가격 / 무게'),

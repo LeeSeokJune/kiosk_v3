@@ -51,7 +51,6 @@ class BasicForm extends StatelessWidget {
             ),
           ),
           // TODO:
-          // 안내문구
           // 어두운 배경
           // 상품 상세
           // 검색
@@ -83,6 +82,14 @@ class BasicForm extends StatelessWidget {
                       width: 135.w,
                       height: 26.h,
                       decoration: BoxDecoration(color: grey_color, borderRadius: BorderRadius.circular(10.w)),
+                    ),
+                  ),
+                  Positioned(
+                    right: 30.w,
+                    top: 17.h,
+                    child: Image.asset(
+                      'assets/icons/magnifying-glass.png',
+                      width: 20.w,
                     ),
                   ),
                 ],
@@ -123,6 +130,13 @@ class BasicForm extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Positioned(
+              left: 30.w,
+              child: Visibility(
+                visible: screen_controller.is_selected_screen(index),
+                child: Image.asset('assets/icons/triangle.png', width: 13.w),
               ),
             ),
           ],
@@ -194,22 +208,5 @@ class BasicForm extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class DrawTriangle extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    var path = Path();
-    path.moveTo(size.width / 2, 0);
-    path.lineTo(0, size.height);
-    path.lineTo(size.height, size.width);
-    path.close();
-    canvas.drawPath(path, Paint()..color = Colors.green);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
   }
 }
