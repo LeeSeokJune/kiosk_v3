@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kiosk_v3/data/style.dart';
+import 'package:kiosk_v3/components/style.dart';
 
 class TestScreen extends StatelessWidget {
   TestScreen({super.key});
