@@ -15,7 +15,7 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
       children: [
         Container(
           width: 100.w,
-          child: _catagory_container(),
+          child: _category_container(),
         ),
         SizedBox(width: 61.w),
         Container(
@@ -58,7 +58,7 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
                         width: 84.w,
                       ),
                       Text('${main_petfood_list[display_controller.pet_type.value][0][index]["brand"]}'),
-                      Text('사료 이름'),
+                      Text('${main_petfood_list[display_controller.pet_type.value][0][index]["name"]}'),
                       SizedBox(height: 5.h),
                       Text('가격 / 무게'),
                     ],
@@ -115,7 +115,7 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
     );
   }
 
-  Column _catagory_container() {
+  Column _category_container() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
