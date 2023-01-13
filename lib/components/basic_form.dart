@@ -4,17 +4,15 @@ import 'package:get/get.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/controllers/screen_controller.dart';
-import 'package:kiosk_v3/screens/main_screen/main_screen.dart';
 
 import '../data/category.dart';
+import '../data/screen.dart';
 
 class BasicForm extends StatelessWidget {
   BasicForm({super.key});
   var display_controller = Get.put(DisplayController());
   var screen_controller = Get.put(ScreenController());
-  List navi_icons = ['assets/icons/home.png', 'assets/icons/star.png', 'assets/icons/filter.png', 'assets/icons/cat.png'];
-  List navi_Text = ['메인 화면', '인기 카테고리', '사료 필터', '1:1 사료 추천'];
-  List<Widget> screen_list = [MainScreen(), Container(), Container(), Container()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +48,15 @@ class BasicForm extends StatelessWidget {
               )),
             ),
           ),
+          Positioned(
+            left: 318.w,
+            bottom: 55.h,
+            child: Image.asset(
+              'assets/icons/triangle.png',
+              width: 13.w,
+              color: mint_color,
+            ),
+          )
           // TODO:
           // 어두운 배경
           // 상품 상세
@@ -142,7 +149,7 @@ class BasicForm extends StatelessWidget {
           ],
         ),
         onTap: () {
-          screen_controller.set_screen_index(index);
+          screen_controller.set_navi_index(index);
         },
       ),
     );

@@ -12,29 +12,25 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 10.h, left: 20.w, bottom: 10.h),
-      child: Stack(
-        children: [
-          Container(
-            width: 560.w,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Obx(
-                () => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][0].length; index++) _petfood_form(row: 0, index: index)],
-                    ),
-                    SizedBox(height: 10.h),
-                    Row(
-                      children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][1].length; index++) _petfood_form(row: 1, index: index)],
-                    ),
-                  ],
+      child: Container(
+        width: 560.w,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Obx(
+            () => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][0].length; index++) _petfood_form(row: 0, index: index)],
                 ),
-              ),
+                SizedBox(height: 10.h),
+                Row(
+                  children: [for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][1].length; index++) _petfood_form(row: 1, index: index)],
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
