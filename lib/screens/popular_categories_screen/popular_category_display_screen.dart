@@ -18,17 +18,14 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
           child: _category_container(),
         ),
         SizedBox(width: 61.w),
-        Container(
-          decoration: test_line,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SizedBox(height: 30.h),
-              _sort_container(),
-              SizedBox(height: 10.h),
-              Expanded(child: _show_popular_category_petfood()),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(height: 30.h),
+            _sort_container(),
+            SizedBox(height: 10.h),
+            Expanded(child: _show_popular_category_petfood()),
+          ],
         ),
       ],
     );
@@ -119,6 +116,7 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        SizedBox(height: 10.h),
         Text(
           '인기 카테고리',
           style: TextStyle(fontSize: 15.sp),
@@ -127,6 +125,7 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
           thickness: 1.h,
           color: Colors.black,
         ),
+        SizedBox(height: 10.h),
         for (var index = 0; index < popular_category_text.length; index++) _popular_category_button(index),
       ],
     );

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
 class ScreenController extends GetxController {
-  RxInt screen_index = 4.obs;
-  RxInt bottom_navi_index = 1.obs;
+  RxInt screen_index = 2.obs;
+  RxInt bottom_navi_index = 2.obs;
 
   void set_screen_index(index) {
     screen_index(index);
