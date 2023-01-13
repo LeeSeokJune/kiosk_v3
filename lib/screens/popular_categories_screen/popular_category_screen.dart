@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/data/screen.dart';
 import '../../controllers/screen_controller.dart';
+import '../../data/category.dart';
 
 class PopularCategoryScreen extends StatelessWidget {
   PopularCategoryScreen({super.key});
-  List popular_category_text = ['브랜드별', '퍼피', '어덜트', '시니어', '그레인프리', '단일단백질', '곤충사료', '다이어트'];
+
   var screen_controller = Get.put(ScreenController());
   var display_controller = Get.put(DisplayController());
   @override
