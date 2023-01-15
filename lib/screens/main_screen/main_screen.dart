@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/data/petfood.dart';
@@ -8,6 +9,7 @@ import 'package:kiosk_v3/data/petfood.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
   var display_controller = Get.put(DisplayController());
+  var f = NumberFormat('###,###,###,###');
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,10 +53,21 @@ class MainScreen extends StatelessWidget {
               'assets/images/A000001.png',
               width: 84.w,
             ),
-            Text('${main_petfood_list[display_controller.pet_type.value][row][index]["brand"]}'),
-            Text('사료 이름'),
-            SizedBox(height: 5.h),
-            Text('가격 / 무게'),
+            Text(
+              '${main_petfood_list[display_controller.pet_type.value][row][index]["brand"]}',
+              style: TextStyle(fontSize: 9.sp),
+            ),
+            Text(
+              '${main_petfood_list[display_controller.pet_type.value][row][index]["name"]}',
+              style: TextStyle(fontSize: 10.sp),
+            ),
+            // SizedBox(height: 5.h),
+            Text(
+              '${f.format(display_controller.filtered_petfood_list[index]["retail_price"])}원 / ${display_controller.filtered_petfood_list[index]["weight"]}',
+              style: TextStyle(
+                fontSize: 10.sp,
+              ),
+            )
           ],
         ),
       ),

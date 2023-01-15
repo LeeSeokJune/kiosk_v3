@@ -145,14 +145,20 @@ class PetfoodFilterScreen extends StatelessWidget {
             visible: display_controller.unfold_big_category[category_index].value,
             child: Column(
               children: [
+                SizedBox(height: 3.h),
                 for (var index = 0; index < display_controller.category_list_number(category_index); index++)
                   Padding(
-                    padding: EdgeInsets.only(left: 10.w),
+                    padding: EdgeInsets.only(left: 10.w, bottom: 3.h),
                     child: InkWell(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(filter_category_list[display_controller.pet_type.value][category_index][index]),
+                          Text(
+                            filter_category_list[display_controller.pet_type.value][category_index][index],
+                            style: TextStyle(
+                              fontSize: 9.sp,
+                            ),
+                          ),
                           Icon(
                             display_controller.selected_filter_category_list[display_controller.pet_type.value][category_index][index].value ? Icons.check_box_outlined : Icons.check_box_outline_blank,
                           ),

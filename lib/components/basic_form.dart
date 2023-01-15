@@ -69,7 +69,7 @@ class BasicForm extends StatelessWidget {
 
   Widget _custom_bottom_navigation() {
     return Container(
-      decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black))),
+      decoration: BoxDecoration(border: Border(top: BorderSide(color: background_color))),
       child: Row(
         children: [
           _navi_button(index: 0),
@@ -140,7 +140,7 @@ class BasicForm extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 30.w,
+              left: index != 2 ? 30.w : 60.w,
               child: Visibility(
                 visible: screen_controller.is_selected_screen(index),
                 child: Image.asset('assets/icons/triangle.png', width: 13.w),
