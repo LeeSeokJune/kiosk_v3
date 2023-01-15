@@ -163,33 +163,30 @@ class PetfoodFilterScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                Visibility(
-                  visible: !display_controller.show_all_filter_category[category_index].value,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 10.0.h, bottom: 10.h),
-                    child: InkWell(
-                      child: Container(
-                        width: 86.w,
-                        height: 18.h,
-                        decoration: BoxDecoration(color: grey_color),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '모두 보기',
-                              style: TextStyle(fontSize: 8.sp, color: Color.fromRGBO(102, 102, 102, 1)),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              size: 13.w,
-                            ),
-                          ],
-                        ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0.h, bottom: 10.h),
+                  child: InkWell(
+                    child: Container(
+                      width: 86.w,
+                      height: 18.h,
+                      decoration: BoxDecoration(color: grey_color),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            display_controller.show_all_filter_category[category_index].value ? '접기' : '모두 보기',
+                            style: TextStyle(fontSize: 8.sp, color: Color.fromRGBO(102, 102, 102, 1)),
+                          ),
+                          Icon(
+                            display_controller.show_all_filter_category[category_index].value ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                            size: 13.w,
+                          ),
+                        ],
                       ),
-                      onTap: () {
-                        display_controller.set_show_all_filter_category(category_index);
-                      },
                     ),
+                    onTap: () {
+                      display_controller.set_show_all_filter_category(category_index);
+                    },
                   ),
                 ),
               ],

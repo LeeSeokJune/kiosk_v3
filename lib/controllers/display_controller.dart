@@ -62,6 +62,18 @@ class DisplayController extends GetxController {
 
   void set_sort_index(index) {
     sort_index(index);
+    if (index == 0) {
+    } else if (index == 1) {
+      filtered_petfood_list.sort(((a, b) {
+        return b['retail_price'].compareTo(a['retail_price']);
+      }));
+    } else if (index == 2) {
+      filtered_petfood_list.sort(((a, b) {
+        return a['retail_price'].compareTo(b['retail_price']);
+      }));
+    }
+    petfood_length++;
+    petfood_length--;
   }
 
   void set_unfold_big_category(index) {

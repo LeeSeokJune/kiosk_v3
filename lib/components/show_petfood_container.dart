@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 
 class ShowPetfoodContainer extends StatelessWidget {
   ShowPetfoodContainer({super.key});
 
   var display_controller = Get.put(DisplayController());
+  var f = NumberFormat('###,###,###,###');
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -35,7 +37,7 @@ class ShowPetfoodContainer extends StatelessWidget {
                       Text('${display_controller.filtered_petfood_list[index]["brand"]}'),
                       Text('${display_controller.filtered_petfood_list[index]["name"]}'),
                       SizedBox(height: 5.h),
-                      Text('가격 / 무게'),
+                      Text('${f.format(display_controller.filtered_petfood_list[index]["retail_price"])}원 / ${display_controller.filtered_petfood_list[index]["weight"]}'),
                     ],
                   ),
                 ),
