@@ -47,7 +47,7 @@ class PetfoodFilterScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                for (var index = 0; index < display_controller.selected_filter_list.length; index++)
+                for (var index = 0; index < display_controller.selected_filter_list_length.value; index++)
                   Padding(
                     padding: EdgeInsets.only(right: 5.w),
                     child: InkWell(
@@ -62,7 +62,7 @@ class PetfoodFilterScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                display_controller.selected_filter_list[index],
+                                display_controller.selected_filter_list[display_controller.pet_type.value][index],
                                 style: TextStyle(
                                   fontSize: 8.sp,
                                 ),
@@ -74,7 +74,7 @@ class PetfoodFilterScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        display_controller.remove_selected_filter_list(display_controller.selected_filter_list[index]);
+                        display_controller.remove_selected_filter_list(display_controller.selected_filter_list[display_controller.pet_type.value][index]);
                       },
                     ),
                   ),

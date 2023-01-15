@@ -22,7 +22,8 @@ class DisplayController extends GetxController {
       List.generate(filter_category_list[1][2].length, (index) => false.obs),
     ]
   ].obs;
-  RxList selected_filter_list = [].obs;
+  RxList selected_filter_list = [[], []].obs;
+  RxInt selected_filter_list_length = 0.obs;
   void onInit() {
     set_filtered_petfood_list();
   }
@@ -34,6 +35,12 @@ class DisplayController extends GetxController {
   void set_pet_type(index) {
     pet_type(index);
     set_filtered_petfood_list();
+    selected_filter_list_length.value = selected_filter_list[pet_type.value].length;
+    for (var pet_index = 0; pet_index > selected_filter_category_list.length; pet_index++) {
+      for (var category_index = 0; category_index < selected_filter_category_list[pet_index].length; category_index++) {
+        selected_filter_category_list[pet_index][category_index].value = false;
+      }
+    }
   }
 
   void set_filtered_petfood_list() {
@@ -84,9 +91,7 @@ class DisplayController extends GetxController {
     selected_filter_category_list[pet_type.value][category_index][index](!selected_filter_category_list[pet_type.value][category_index][index].value);
     set_selected_filter_list(filter_category_list[pet_type.value][category_index][index]);
     filtered_petfood_list = filtering_brand_category(main_petfood_list[pet_type.value][2], 0);
-    print(filtered_petfood_list.length);
     filtered_petfood_list = filtering_multi_select_category(filtered_petfood_list, 1, 'health');
-    print(filtered_petfood_list.length);
     filtered_petfood_list = filtering_multi_select_category(filtered_petfood_list, 2, 'main_ingredient');
     set_petfood_length();
   }
@@ -136,11 +141,14 @@ class DisplayController extends GetxController {
   }
 
   void set_selected_filter_list(category_name) {
-    if (selected_filter_list.indexOf(category_name) != -1) {
-      selected_filter_list.remove(category_name);
+    if (selected_filter_list[pet_type.value].indexOf(category_name) != -1) {
+      selected_filter_list[pet_type.value].remove(category_name);
     } else {
-      selected_filter_list.add(category_name);
+      selected_filter_list[pet_type.value].add(category_name);
     }
+    print(selected_filter_list);
+    print(category_name);
+    selected_filter_list_length.value = selected_filter_list[pet_type.value].length;
   }
 
   void remove_selected_filter_list(category_name) {
