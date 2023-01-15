@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kiosk_v3/components/show_petfood_container.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/data/category.dart';
@@ -24,47 +25,10 @@ class PopularCategoryDisplayScreen extends StatelessWidget {
             SizedBox(height: 30.h),
             _sort_container(),
             SizedBox(height: 10.h),
-            Expanded(child: _show_popular_category_petfood()),
+            Expanded(child: ShowPetfoodContainer()),
           ],
         ),
       ],
-    );
-  }
-
-  Widget _show_popular_category_petfood() {
-    return Obx(
-      () => SingleChildScrollView(
-        child: Container(
-          width: 420.w,
-          child: Wrap(
-            spacing: 20.w,
-            runSpacing: 10.h,
-            children: [
-              for (var index = 0; index < main_petfood_list[display_controller.pet_type.value][0].length; index++)
-                Container(
-                  width: 90.w,
-                  height: 128.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.w),
-                  ),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/A000001.png',
-                        width: 84.w,
-                      ),
-                      Text('${main_petfood_list[display_controller.pet_type.value][0][index]["brand"]}'),
-                      Text('${main_petfood_list[display_controller.pet_type.value][0][index]["name"]}'),
-                      SizedBox(height: 5.h),
-                      Text('가격 / 무게'),
-                    ],
-                  ),
-                )
-            ],
-          ),
-        ),
-      ),
     );
   }
 

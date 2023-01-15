@@ -4,7 +4,7 @@ List popular_category_text = ['퍼피', '어덜트', '시니어', '그레인프�
 final pet_text = ['강아지', '고양이'];
 final sort_text = ['판매량 순', '높은가격 순', '낮은가격 순'];
 
-final big_category_list = ['브랜드', '건강 고려 사항', '주원료'];
+final big_category_list = ['브랜드', '건강고려사항', '주원료'];
 final dog_category = [dog_brand_list, dog_healthcare_list, dog_main_ingredient];
 final cat_category = [cat_brand_list, cat_healthcare_list, cat_main_ingredient];
 final filter_category_list = [dog_category, cat_category];
