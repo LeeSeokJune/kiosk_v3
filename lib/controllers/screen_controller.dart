@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:kiosk_v3/data/screen.dart';
 
 class ScreenController extends GetxController {
-  RxInt screen_index = 2.obs;
-  RxInt bottom_navi_index = 2.obs;
+  RxInt screen_index = ScreenState.curation_input_screen.index.obs;
+  RxInt bottom_navi_index = 3.obs;
 
   void set_screen_index(index) {
     screen_index(index);
