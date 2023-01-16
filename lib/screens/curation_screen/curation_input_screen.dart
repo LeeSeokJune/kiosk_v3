@@ -147,11 +147,16 @@ class CurationInputScreen extends StatelessWidget {
                   _custom_title_form(title: '알러지'),
                   Container(
                     width: curation_container_width,
-                    child: Wrap(
-                      spacing: 5.w,
-                      runSpacing: 5.h,
+                    child: Column(
                       children: [
-                        for (var alg_index = 0; alg_index < alg[display_controller.pet_type.value].length; alg_index++) _multi_select_button(index: alg_index, text: 'alg', list: alg),
+                        Wrap(
+                          spacing: 5.w,
+                          runSpacing: 5.h,
+                          children: [
+                            for (var alg_index = 0; alg_index < alg[display_controller.pet_type.value].length; alg_index++) _multi_select_button(index: alg_index, text: 'alg', list: alg),
+                          ],
+                        ),
+                        _alg_sub_form(),
                       ],
                     ),
                   ),
@@ -162,6 +167,84 @@ class CurationInputScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _alg_sub_form() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 37.w,
+              height: 20.h,
+              child: Center(child: Text('기타')),
+            ),
+            SizedBox(width: 5.w),
+            Container(
+              width: 163.w,
+              height: curation_box_height,
+              padding: EdgeInsets.only(left: 10.w),
+              decoration: white_box_deco,
+              child: DropdownSearch(
+                dropdownDecoratorProps: DropDownDecoratorProps(dropdownSearchDecoration: InputDecoration(border: InputBorder.none)),
+                dropdownBuilder: ((context, selectedItem) {
+                  return Text(selectedItem ?? "", style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w500));
+                }),
+                popupProps: PopupProps.menu(
+                  disabledItemFn: (String s) => s.startsWith('I'),
+                  showSearchBox: true,
+                ),
+                items: alg_sub_list,
+                selectedItem: "",
+                onChanged: (value) {
+                  user_controller.set_user_list_info(text: 'alg_sub', value: value);
+                },
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 5.h),
+        Obx(
+          () => Container(
+            width: curation_container_width,
+            child: Wrap(
+              spacing: 5.w,
+              runSpacing: 5.h,
+              children: [
+                for (var sub_index = 0; sub_index < user_controller.user_info['alg_sub'].length; sub_index++) _alg_sub_container(index: sub_index),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _alg_sub_container({index}) {
+    return InkWell(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        height: 15.h,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(205, 221, 255, 1),
+          borderRadius: BorderRadius.circular(8.w),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(user_controller.user_info['alg_sub'][index]),
+            SizedBox(width: 3.w),
+            Icon(
+              Icons.cancel,
+              color: main_color,
+            ),
+          ],
+        ),
+      ),
+      onTap: () {
+        user_controller.set_user_list_info(text: 'alg_sub', value: user_controller.user_info['alg_sub'][index]);
+      },
     );
   }
 
@@ -259,14 +342,14 @@ class CurationInputScreen extends StatelessWidget {
         () => Row(
           children: [
             _custom_title_form(title: pet_breed_text[display_controller.pet_type.value]),
-            _custom_dropdown_search(width: curation_container_width, text: 'breed', list: breed[display_controller.pet_type.value]),
+            _custom_dropdown_search(width: curation_container_width, text: 'breed', list: breed[display_controller.pet_type.value], show_search_box: true),
           ],
         ),
       ),
     );
   }
 
-  Widget _custom_dropdown_search({width, text, list}) {
+  Widget _custom_dropdown_search({width, text, list, show_search_box = false}) {
     return Container(
       width: width,
       height: curation_box_height,
@@ -280,6 +363,7 @@ class CurationInputScreen extends StatelessWidget {
         popupProps: PopupProps.menu(
           showSelectedItems: true,
           disabledItemFn: (String s) => s.startsWith('I'),
+          showSearchBox: show_search_box,
         ),
         items: list,
         selectedItem: user_controller.user_info[text].toString(),

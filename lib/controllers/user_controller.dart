@@ -14,6 +14,7 @@ class UserController extends GetxController {
     'bcs': 0.obs,
     'show_alg': 1.obs,
     'alg': [].obs,
+    'alg_sub': [].obs,
     'health': [].obs,
     'weight': "".obs,
   }.obs;
@@ -31,13 +32,12 @@ class UserController extends GetxController {
   }
 
   void set_user_list_info({text, value}) {
-    print(user_info[text].indexOf(value));
-    print(value);
     if (user_info[text].indexOf(value) != -1) {
       user_info[text].remove(value);
     } else {
       user_info[text].add(value);
     }
+    print(user_info['alg_sub']);
   }
 
   bool is_selected_list_button({text, value}) {
