@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiosk_v3/screens/curation_screen/cuartion_pet_screen.dart';
+import 'package:kiosk_v3/screens/curation_screen/cuartion_record_petfood_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_exist_user_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_input_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_main_screen.dart';
@@ -20,6 +21,7 @@ enum ScreenState {
   curation_exist_user_screen,
   curation_input_screen,
   curation_pet_screen,
+  curation_record_petfood_screen,
 }
 
 List navi_icons = ['assets/icons/home.png', 'assets/icons/star.png', 'assets/icons/filter.png', 'assets/icons/cat.png'];
@@ -34,4 +36,5 @@ List<Widget> screen_list = [
   CurationExistUserScreen(),
   CurationInputScreen(),
   CurationPetScreen(),
+  CurationRecordPetfoodScreen(),
 ];

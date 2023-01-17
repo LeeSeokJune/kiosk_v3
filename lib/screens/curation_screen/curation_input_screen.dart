@@ -66,7 +66,7 @@ class CurationInputScreen extends StatelessWidget {
     );
   }
 
-  InkWell _screen_move_button({screen_num, text, fill}) {
+  InkWell _screen_move_button({text, fill}) {
     return InkWell(
       child: Container(
         width: 60.w,
@@ -100,7 +100,9 @@ class CurationInputScreen extends StatelessWidget {
           'alg': user_controller.user_info['alg'].value,
           'alg_sub': user_controller.user_info['alg_sub'].value,
           'health': user_controller.user_info['health'].value,
-        }).then((value) => {screen_controller.set_screen_index(ScreenState.curation_pet_screen.index)});
+        }).then((value) => {
+              screen_controller.set_screen_index(ScreenState.curation_pet_screen.index),
+            });
       },
     );
   }
@@ -405,8 +407,9 @@ class CurationInputScreen extends StatelessWidget {
             height: curation_box_height,
             padding: EdgeInsets.only(left: 10.w),
             decoration: white_box_deco,
-            child: TextField(
+            child: TextFormField(
               decoration: InputDecoration(border: InputBorder.none, hintText: hint ?? ""),
+              initialValue: user_controller.user_info[text].value,
               onChanged: (value) {
                 user_controller.set_user_info(text: text, value: value);
               },

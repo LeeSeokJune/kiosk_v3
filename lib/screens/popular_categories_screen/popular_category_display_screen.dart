@@ -5,7 +5,6 @@ import 'package:kiosk_v3/components/show_petfood_container.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/data/category.dart';
-import 'package:kiosk_v3/data/petfood.dart';
 
 class PopularCategoryDisplayScreen extends StatelessWidget {
   PopularCategoryDisplayScreen({super.key});

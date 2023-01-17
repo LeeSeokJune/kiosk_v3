@@ -5,7 +5,6 @@ import 'package:kiosk_v3/controllers/screen_controller.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
 
 import '../../components/style.dart';
-import '../../data/screen.dart';
 
 class CurationExistUserScreen extends StatelessWidget {
   CurationExistUserScreen({super.key});
@@ -58,6 +57,7 @@ class CurationExistUserScreen extends StatelessWidget {
                 ),
                 onTap: () {
                   // TODO : 휴대폰 번호가 없을때, 신규회원으로 이동
+                  // 있으면 pet_screen 이동
                 },
               ),
             ],

@@ -3,12 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/pet_controller.dart';
+import 'package:kiosk_v3/controllers/screen_controller.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
+import 'package:kiosk_v3/data/screen.dart';
 
 class CurationPetScreen extends StatelessWidget {
   CurationPetScreen({super.key});
   var user_controller = Get.put(UserController());
   var pet_controller = Get.put(PetController());
+  var screen_controller = Get.put(ScreenController());
   @override
   Widget build(BuildContext context) {
     pet_controller.set_pet_list();
@@ -20,12 +23,13 @@ class CurationPetScreen extends StatelessWidget {
         Expanded(
           child: Obx(
             () => Container(
-              padding: EdgeInsets.only(top: 15.h),
+              width: 600.w,
               decoration: BoxDecoration(color: grey_color),
               child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (var pet_index = 0; pet_index < pet_controller.pet_list.length; pet_index++) _pet_container_form(pet_index),
+                    for (var pet_index = 0; pet_index < pet_controller.pet_length.value; pet_index++) _pet_container_form(pet_index),
                     _add_new_pet_button(),
                   ],
                 ),
@@ -60,7 +64,8 @@ class CurationPetScreen extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // TODO : 큐레이션 페이지로 이동 및 초기화
+        user_controller.add_new_pet_button(pet_controller.pet_list[0]['member_id']);
+        screen_controller.set_screen_index(ScreenState.curation_input_screen.index);
       },
     );
   }
@@ -104,8 +109,8 @@ class CurationPetScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // TODO : 데이터 채워넣기
-                    // user_info = pet_list[index]
+                    user_controller.modify_button(pet_controller.pet_list[pet_index]);
+                    screen_controller.set_screen_index(ScreenState.curation_input_screen.index);
                   },
                 ),
                 SizedBox(height: 10.h),
@@ -133,7 +138,8 @@ class CurationPetScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // TODO : 기록화면
+                    pet_controller.set_selected_pet_index(pet_index);
+                    screen_controller.set_screen_index(ScreenState.curation_record_petfood_screen.index);
                   },
                 ),
               ],
@@ -143,10 +149,15 @@ class CurationPetScreen extends StatelessWidget {
         Positioned(
           right: 0,
           top: 0,
-          child: Icon(
-            Icons.do_not_disturb_on,
-            size: 30.w,
-            color: main_color,
+          child: InkWell(
+            child: Icon(
+              Icons.do_not_disturb_on,
+              size: 30.w,
+              color: main_color,
+            ),
+            onTap: () {
+              pet_controller.delete_button(pet_index);
+            },
           ),
         ),
       ],

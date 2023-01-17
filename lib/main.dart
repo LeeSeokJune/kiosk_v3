@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_v3/components/basic_form.dart';
-import 'package:kiosk_v3/screens/main_screen/main_screen.dart';
 
 void main() {
   runApp(MyApp());
