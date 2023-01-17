@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
+import 'package:kiosk_v3/data/curation.dart';
 
 import '../components/rest_api.dart';
 
@@ -10,6 +11,13 @@ class PetController extends GetxController {
   RxInt selected_pet_index = 0.obs;
   RxList selected_petfood_list = [].obs;
   RxInt selected_petfood_list_length = 0.obs;
+  RxMap curation_data = {}.obs;
+  RxMap curation_petfood = {}.obs;
+  RxInt sort_index = 0.obs;
+
+  void set_sort_index(index) {
+    sort_index(index);
+  }
 
   void set_pet_list() {
     post_data(url: 'pet-info/', data: {'member_id': user_controller.user_info['member_id'].value}).then(
@@ -19,6 +27,13 @@ class PetController extends GetxController {
         set_pet_length(),
       },
     );
+  }
+
+  void get_curation_petfood() {
+    post_data(url: 'curation/', data: pet_list[selected_pet_index.value]).then((response) => {
+          curation_petfood = RxMap(response),
+          curation_data = RxMap(response['curation_data']),
+        });
   }
 
   void set_pet_length() {
@@ -32,6 +47,10 @@ class PetController extends GetxController {
         set_pet_list(),
       },
     );
+  }
+
+  void recommend_button(index) {
+    set_selected_pet_index(index);
   }
 
   void set_selected_pet_index(index) {
@@ -61,5 +80,43 @@ class PetController extends GetxController {
 
   void set_selected_petfood_list_length() {
     selected_petfood_list_length(selected_petfood_list.length);
+  }
+
+  String explain_text() {
+    var text = '';
+    if (curation_data['pet'] == '0') {
+      if (curation_data['life_stage'] == '퍼피') {
+        text += pet_explain_text_list[0];
+      } else if (curation_data['life_stage'] == '어덜트') {
+        if (curation_data['bcs'] != '2') {
+          text += pet_explain_text_list[1];
+        } else {
+          text += pet_explain_text_list[2];
+        }
+      } else {
+        if (curation_data['bcs'] != '2') {
+          text += pet_explain_text_list[3];
+        } else {
+          text += pet_explain_text_list[4];
+        }
+      }
+    } else {
+      if (curation_data['life_stage'] == '키튼') {
+        text += pet_explain_text_list[5];
+      } else if (curation_data['life_stage'] == '어덜트') {
+        if (curation_data['bcs'] != '2') {
+          text += pet_explain_text_list[6];
+        } else {
+          text += pet_explain_text_list[7];
+        }
+      } else {
+        if (curation_data['bcs'] != '2') {
+          text += pet_explain_text_list[8];
+        } else {
+          text += pet_explain_text_list[9];
+        }
+      }
+    }
+    return text;
   }
 }

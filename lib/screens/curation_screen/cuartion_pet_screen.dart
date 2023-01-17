@@ -124,7 +124,8 @@ class CurationPetScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // TODO : curation screen
+                    pet_controller.recommend_button(pet_index);
+                    screen_controller.set_screen_index(ScreenState.curation_recommend_petfood_screen.index);
                   },
                 ),
                 SizedBox(height: 5.h),

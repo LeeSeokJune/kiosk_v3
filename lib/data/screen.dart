@@ -5,6 +5,7 @@ import 'package:kiosk_v3/screens/curation_screen/curation_exist_user_screen.dart
 import 'package:kiosk_v3/screens/curation_screen/curation_input_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_main_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_new_user_screen.dart';
+import 'package:kiosk_v3/screens/curation_screen/curation_recommend_petfood_screen.dart';
 import 'package:kiosk_v3/screens/petfood_filter_screen/petfood_filter_screen.dart';
 import 'package:kiosk_v3/screens/popular_categories_screen/popular_category_display_screen.dart';
 
@@ -22,6 +23,7 @@ enum ScreenState {
   curation_input_screen,
   curation_pet_screen,
   curation_record_petfood_screen,
+  curation_recommend_petfood_screen,
 }
 
 List navi_icons = ['assets/icons/home.png', 'assets/icons/star.png', 'assets/icons/filter.png', 'assets/icons/cat.png'];
@@ -37,4 +39,5 @@ List<Widget> screen_list = [
   CurationInputScreen(),
   CurationPetScreen(),
   CurationRecordPetfoodScreen(),
+  CurationRecommendPetfoodScreen(),
 ];
