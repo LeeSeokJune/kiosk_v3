@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class UserController extends GetxController {
   RxBool agreement = false.obs;
   RxMap user_info = {
-    'user_id': ''.obs,
+    'member_id': '01098701720'.obs,
     'name': ''.obs,
     'breed': '선택'.obs,
     'birth_year': '년'.obs,

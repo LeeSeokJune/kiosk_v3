@@ -17,3 +17,5 @@ final black_border = BoxDecoration(border: Border.all(color: Colors.black, width
 final curation_subtitle_style = TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w500);
 final curation_contents_style = TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w500);
 final curation_selected_contents_style = TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w500, color: Colors.white);
+
+final pet_container_style = BoxDecoration(border: Border.all(color: main_color, width: 1.w), borderRadius: BorderRadius.circular(15.w), color: Colors.white);

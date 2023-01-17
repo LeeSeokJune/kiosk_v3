@@ -2,15 +2,19 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:kiosk_v3/components/rest_api.dart';
 import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
+import 'package:kiosk_v3/controllers/screen_controller.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
 import 'package:kiosk_v3/data/curation.dart';
+import 'package:kiosk_v3/data/screen.dart';
 
 class CurationInputScreen extends StatelessWidget {
   CurationInputScreen({super.key});
   var user_controller = Get.put(UserController());
   var display_controller = Get.put(DisplayController());
+  var screen_controller = Get.put(ScreenController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +31,7 @@ class CurationInputScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20.h),
-              _custom_textfield(title: '이름', text: 'pet_name'),
+              _custom_textfield(title: '이름', text: 'name'),
               SizedBox(height: 15.h),
               _breed_dropdown(),
               SizedBox(height: 15.h),
@@ -80,7 +84,24 @@ class CurationInputScreen extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        post_data(url: 'pet-save/', data: {
+          'member_id': user_controller.user_info['member_id'].value,
+          'pet': display_controller.pet_type.value,
+          'name': user_controller.user_info['name'].value,
+          'breed': user_controller.user_info['breed'].value,
+          'birth_year': user_controller.user_info['birth_year'].value,
+          'birth_month': user_controller.user_info['birth_month'].value,
+          'birth_day': user_controller.user_info['birth_day'].value,
+          'sex': user_controller.user_info['sex'].value,
+          'neutering': user_controller.user_info['neutering'].value,
+          'weight': user_controller.user_info['weight'].value,
+          'bcs': user_controller.user_info['bcs'].value,
+          'alg': user_controller.user_info['alg'].value,
+          'alg_sub': user_controller.user_info['alg_sub'].value,
+          'health': user_controller.user_info['health'].value,
+        }).then((value) => {screen_controller.set_screen_index(ScreenState.curation_pet_screen.index)});
+      },
     );
   }
 

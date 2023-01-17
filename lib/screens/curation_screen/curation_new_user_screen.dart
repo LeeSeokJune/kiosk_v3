@@ -63,7 +63,7 @@ class CurationNewUserScreen extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: ((value) {
-                    user_controller.set_user_info(text: 'user_id', value: value);
+                    user_controller.set_user_info(text: 'member_id', value: value);
                   }),
                 ),
               ),
@@ -81,7 +81,7 @@ class CurationNewUserScreen extends StatelessWidget {
                   // TODO : 동의를 안했을때 + 휴대폰번호 길이
                   if (!user_controller.agreement.value) {
                     Get.snackbar('동의 안함', '동의를 해주시오.');
-                  } else if (user_controller.user_info['user_id'].value.length != 10) {
+                  } else if (user_controller.user_info['member_id'].value.length != 11) {
                     Get.snackbar('휴대폰 번호!!', '번호를 제대로 입력해주시오');
                   } else {
                     screen_controller.set_screen_index(ScreenState.curation_input_screen.index);
