@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kiosk_v3/controllers/screen_controller.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
+import 'package:kiosk_v3/data/screen.dart';
 
 import '../../components/style.dart';
 
@@ -41,7 +42,7 @@ class CurationExistUserScreen extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: ((value) {
-                    user_controller.set_user_info(text: 'user_id', value: value);
+                    user_controller.set_user_info(text: 'member_id', value: value);
                   }),
                 ),
               ),
@@ -56,8 +57,33 @@ class CurationExistUserScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  // TODO : 휴대폰 번호가 없을때, 신규회원으로 이동
-                  // 있으면 pet_screen 이동
+                  user_controller.user_exist().then((value) {
+                    print(value);
+                    if (value) {
+                      screen_controller.set_navi_index(ScreenState.curation_pet_screen.index);
+                    } else {
+                      Get.dialog(
+                        AlertDialog(
+                          title: Text('등록되지 않은 정보입니다.\n신규 등록 페이지로 이동하시겠습니까?'),
+                          actions: [
+                            TextButton(
+                              child: Text('Yes'),
+                              onPressed: () {
+                                screen_controller.set_navi_index(ScreenState.curation_new_user_screen.index);
+                                Get.back();
+                              },
+                            ),
+                            TextButton(
+                              child: Text('No'),
+                              onPressed: () {
+                                Get.back();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  });
                 },
               ),
             ],

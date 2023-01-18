@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kiosk_v3/screens/curation_screen/cuartion_pet_screen.dart';
-import 'package:kiosk_v3/screens/curation_screen/cuartion_record_petfood_screen.dart';
+import 'package:kiosk_v3/screens/curation_screen/curation_pet_screen.dart';
+import 'package:kiosk_v3/screens/curation_screen/curation_record_petfood_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_exist_user_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_input_screen.dart';
 import 'package:kiosk_v3/screens/curation_screen/curation_main_screen.dart';
@@ -11,6 +11,8 @@ import 'package:kiosk_v3/screens/popular_categories_screen/popular_category_disp
 
 import '../screens/main_screen/main_screen.dart';
 import '../screens/popular_categories_screen/popular_category_screen.dart';
+
+final speech_bubble = [ScreenState.main_screen.index, ScreenState.popular_category_screen.index];
 
 enum ScreenState {
   main_screen,

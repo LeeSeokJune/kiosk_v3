@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:kiosk_v3/components/style.dart';
 import 'package:kiosk_v3/controllers/display_controller.dart';
 import 'package:kiosk_v3/data/petfood.dart';
 

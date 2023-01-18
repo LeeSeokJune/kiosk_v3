@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kiosk_v3/components/rest_api.dart';
 
 import '../components/basic_function.dart';
 
@@ -20,6 +21,12 @@ class UserController extends GetxController {
     'health': [].obs,
     'weight': "".obs,
   }.obs;
+
+  dynamic user_exist() async {
+    var response = await post_data(url: 'user-exist/', data: {'member_id': user_info['member_id'].value});
+    return response;
+  }
+
   void set_agreement() {
     agreement(!agreement.value);
   }

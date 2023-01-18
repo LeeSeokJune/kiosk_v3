@@ -17,4 +17,8 @@ class ScreenController extends GetxController {
   bool is_selected_screen(index) {
     return index == bottom_navi_index.value;
   }
+
+  bool show_speech_bubble() {
+    return speech_bubble.indexOf(screen_index.value) != -1;
+  }
 }

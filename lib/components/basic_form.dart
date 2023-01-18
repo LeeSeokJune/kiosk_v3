@@ -30,33 +30,42 @@ class BasicForm extends StatelessWidget {
               _custom_bottom_navigation(),
             ],
           ),
-
-          Positioned(
-            left: 300.w,
-            bottom: 63.h,
-            child: Container(
-              width: 165.w,
-              height: 18.h,
-              decoration: BoxDecoration(
-                color: mint_color,
-                borderRadius: BorderRadius.circular(10.w),
+          Obx(
+            () => Visibility(
+              visible: screen_controller.show_speech_bubble(),
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 300.w,
+                    bottom: 63.h,
+                    child: Container(
+                      width: 165.w,
+                      height: 18.h,
+                      decoration: BoxDecoration(
+                        color: mint_color,
+                        borderRadius: BorderRadius.circular(10.w),
+                      ),
+                      child: Center(
+                          child: Text(
+                        '우리 아이에게 딱 맞는 사료를 찾으려면',
+                        style: TextStyle(fontSize: 9.sp),
+                      )),
+                    ),
+                  ),
+                  Positioned(
+                    left: 318.w,
+                    bottom: 55.h,
+                    child: Image.asset(
+                      'assets/icons/triangle.png',
+                      width: 13.w,
+                      color: mint_color,
+                    ),
+                  )
+                ],
               ),
-              child: Center(
-                  child: Text(
-                '우리 아이에게 딱 맞는 사료를 찾으려면',
-                style: TextStyle(fontSize: 9.sp),
-              )),
             ),
           ),
-          Positioned(
-            left: 318.w,
-            bottom: 55.h,
-            child: Image.asset(
-              'assets/icons/triangle.png',
-              width: 13.w,
-              color: mint_color,
-            ),
-          )
+
           // TODO:
           // 어두운 배경
           // 상품 상세
