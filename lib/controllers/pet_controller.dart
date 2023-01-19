@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
 import 'package:kiosk_v3/data/curation.dart';
 
+import '../components/basic_function.dart';
 import '../components/rest_api.dart';
 
 class PetController extends GetxController {
@@ -17,6 +18,26 @@ class PetController extends GetxController {
 
   void set_sort_index(index) {
     sort_index(index);
+  }
+
+  void post_selected_petfood() {
+    post_data(url: 'set-petfood/', data: {
+      'member_id': pet_list[selected_pet_index.value]['member_id']['member_id'],
+      'name': pet_list[selected_pet_index.value]['name'],
+      'petfood': selected_petfood_list,
+    }).then((response) {
+      print(response);
+    });
+  }
+
+  dynamic get_selected_petfood() {
+    post_data(url: 'get-petfood/', data: {
+      'member_id': pet_list[selected_pet_index.value]['member_id']['member_id'],
+      'name': pet_list[selected_pet_index.value]['name'],
+    }).then((response) {
+      selected_petfood_list(str_to_list(response['petfood']));
+      set_selected_petfood_list_length();
+    });
   }
 
   void set_pet_list() {

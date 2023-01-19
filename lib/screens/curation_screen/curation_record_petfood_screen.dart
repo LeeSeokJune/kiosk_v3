@@ -9,8 +9,10 @@ class CurationRecordPetfoodScreen extends StatelessWidget {
   CurationRecordPetfoodScreen({super.key});
   var pet_controller = Get.put(PetController());
   // TODO : 서버 연동
+  // TODO : 사료 데이터 정리하고 다시 하기
   @override
   Widget build(BuildContext context) {
+    pet_controller.get_selected_petfood();
     return SingleChildScrollView(
       child: Obx(
         () => Column(
@@ -32,14 +34,19 @@ class CurationRecordPetfoodScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.h),
-            Container(
-              width: 100.w,
-              height: 30.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.w),
-                color: main_color,
+            InkWell(
+              child: Container(
+                width: 100.w,
+                height: 30.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.w),
+                  color: main_color,
+                ),
+                child: Center(child: Text('저장하기', style: TextStyle(color: Colors.white, fontSize: 13.sp, fontWeight: FontWeight.bold))),
               ),
-              child: Center(child: Text('저장하기', style: TextStyle(color: Colors.white, fontSize: 13.sp, fontWeight: FontWeight.bold))),
+              onTap: () {
+                pet_controller.post_selected_petfood();
+              },
             ),
             SizedBox(height: 15.h),
             Wrap(
@@ -101,7 +108,6 @@ class CurationRecordPetfoodScreen extends StatelessWidget {
             ),
             onTap: () {
               pet_controller.set_selected_petfood_list(pet_controller.selected_petfood_list[index]);
-              // TODO: 사료 삭제
             },
           ),
         ),
