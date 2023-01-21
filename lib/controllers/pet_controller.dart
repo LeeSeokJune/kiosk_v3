@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:kiosk_v3/controllers/user_controller.dart';
 import 'package:kiosk_v3/data/curation.dart';
+import 'package:kiosk_v3/data/petfood.dart';
 
 import '../components/basic_function.dart';
 import '../components/rest_api.dart';
@@ -38,6 +39,8 @@ class PetController extends GetxController {
       selected_petfood_list(str_to_list(response['petfood']));
       set_selected_petfood_list_length();
     });
+    var sub_data = main_petfood_list[0][0][0];
+    print(main_petfood_list[0][0].indexOf(sub_data));
   }
 
   void set_pet_list() {

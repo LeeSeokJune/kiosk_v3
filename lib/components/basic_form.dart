@@ -67,11 +67,153 @@ class BasicForm extends StatelessWidget {
           ),
 
           // TODO:
-          // 어두운 배경
-          // 상품 상세
-          // 검색
+          _background(),
+          _petfood_detail_container(),
+          Obx(
+            () => Visibility(
+              visible: screen_controller.search_container.value,
+              child: Positioned(
+                left: 50.w,
+                top: 50.h,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 500.w,
+                      height: 300.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30.w),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 200.w,
+                                height: 30.h,
+                                padding: EdgeInsets.only(left: 10.w),
+                                decoration: BoxDecoration(border: Border.all(color: Colors.black), borderRadius: BorderRadius.circular(10.w)),
+                                child: TextFormField(
+                                  decoration: InputDecoration(border: InputBorder.none),
+                                  onChanged: (value) {
+                                    screen_controller.set_search_text(value);
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 10.w),
+                              Container(
+                                width: 60.w,
+                                height: 30.h,
+                                decoration: BoxDecoration(color: main_color, borderRadius: BorderRadius.circular(10.w)),
+                                child: Center(
+                                    child: Text(
+                                  '검색',
+                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12.sp),
+                                )),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                    InkWell(
+                      child: Icon(
+                        Icons.cancel,
+                        size: 30.w,
+                      ),
+                      onTap: () {
+                        screen_controller.set_search_container();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           // 광고
         ],
+      ),
+    );
+  }
+
+  Obx _petfood_detail_container() {
+    return Obx(
+      () => Visibility(
+        visible: screen_controller.petfood_detail_container.value,
+        child: Positioned(
+          left: 50.w,
+          top: 50.h,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 500.w,
+                height: 300.h,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30.w),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 20.h),
+                    Container(
+                      width: 200.w,
+                      height: 30.h,
+                      decoration: BoxDecoration(color: grey_color),
+                      child: Center(child: Text('사료이름')),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 100.w,
+                          height: 100.h,
+                          color: grey_color,
+                          child: Image.asset('assets/images/A000001.png'),
+                        ),
+                        SizedBox(width: 50.w),
+                        Column(
+                          children: [Text('사료 정보들')],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 10.w),
+              InkWell(
+                child: Icon(
+                  Icons.cancel,
+                  size: 30.w,
+                ),
+                onTap: () {
+                  screen_controller.set_petfood_detail_container();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Obx _background() {
+    return Obx(
+      () => Visibility(
+        visible: screen_controller.background.value,
+        child: Opacity(
+          opacity: 0.5,
+          child: Container(
+            color: Colors.grey,
+          ),
+        ),
       ),
     );
   }
@@ -86,30 +228,35 @@ class BasicForm extends StatelessWidget {
           _navi_button(index: 2),
           _navi_button(index: 3),
           Expanded(
-            child: Container(
-              height: 63.h,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 20.w,
-                    top: 14.h,
-                    child: Container(
-                      width: 135.w,
-                      height: 26.h,
-                      decoration: BoxDecoration(color: grey_color, borderRadius: BorderRadius.circular(10.w)),
+            child: InkWell(
+              child: Container(
+                height: 63.h,
+                decoration: BoxDecoration(color: Colors.white),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      right: 20.w,
+                      top: 14.h,
+                      child: Container(
+                        width: 135.w,
+                        height: 26.h,
+                        decoration: BoxDecoration(color: grey_color, borderRadius: BorderRadius.circular(10.w)),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    right: 30.w,
-                    top: 17.h,
-                    child: Image.asset(
-                      'assets/icons/magnifying-glass.png',
-                      width: 20.w,
+                    Positioned(
+                      right: 30.w,
+                      top: 17.h,
+                      child: Image.asset(
+                        'assets/icons/magnifying-glass.png',
+                        width: 20.w,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              onTap: () {
+                screen_controller.set_search_container();
+              },
             ),
           ),
         ],
