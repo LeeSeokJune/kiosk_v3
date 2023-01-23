@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kiosk_v3/data/petfood.dart';
 import 'package:kiosk_v3/data/screen.dart';
 
 class ScreenController extends GetxController {
@@ -8,6 +9,8 @@ class ScreenController extends GetxController {
   RxBool petfood_detail_container = false.obs;
   RxBool search_container = false.obs;
   RxString search_text = ''.obs;
+  RxList search_petfood = [].obs;
+  RxInt search_petfood_length = 0.obs;
 
   void set_screen_index(index) {
     screen_index(index);
@@ -33,6 +36,9 @@ class ScreenController extends GetxController {
 
   void set_search_container() {
     search_container(!search_container.value);
+    if (!search_container.value) {
+      set_search_text('');
+    }
     set_background();
   }
 
@@ -47,7 +53,26 @@ class ScreenController extends GetxController {
 
   void set_search_text(value) {
     search_text(value);
+    search_petfood_function();
   }
 
-  void search() {}
+  bool search_text_bool() {
+    var return_bool = search_text.value != '';
+    print(return_bool);
+    return return_bool;
+  }
+
+  void search_petfood_function() {
+    var temp = [];
+    for (var petfood_index = 0; petfood_index < main_petfood_list[0][2].length; petfood_index++) {
+      if (main_petfood_list[0][2][petfood_index]['name'].toString().contains(search_text.value)) {
+        temp.add(main_petfood_list[0][2][petfood_index]);
+      } else if (main_petfood_list[0][2][petfood_index]['brand'].toString().contains(search_text.value)) {
+        temp.add(main_petfood_list[0][2][petfood_index]);
+      }
+    }
+    search_petfood = temp.obs;
+    search_petfood_length(search_petfood.length);
+    print(search_petfood_length);
+  }
 }

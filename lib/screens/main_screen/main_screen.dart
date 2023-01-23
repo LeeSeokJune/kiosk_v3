@@ -56,21 +56,21 @@ class MainScreen extends StatelessWidget {
                 'assets/images/A000001.png',
                 width: 84.w,
               ),
-              Text(
-                '${main_petfood_list[display_controller.pet_type.value][row][index]["brand"]}',
-                style: TextStyle(fontSize: 9.sp),
-              ),
+              // Text(
+              //   '${main_petfood_list[display_controller.pet_type.value][row][index]["brand"]}',
+              //   style: TextStyle(fontSize: 9.sp),
+              // ),
               Text(
                 '${main_petfood_list[display_controller.pet_type.value][row][index]["name"]}',
                 style: TextStyle(fontSize: 10.sp),
               ),
               // SizedBox(height: 5.h),
-              Text(
-                '${f.format(display_controller.filtered_petfood_list[index]["retail_price"])}원 / ${display_controller.filtered_petfood_list[index]["weight"]}',
-                style: TextStyle(
-                  fontSize: 10.sp,
-                ),
-              )
+              // Text(
+              //   '${f.format(display_controller.filtered_petfood_list[index]["retail_price"])}원 / ${display_controller.filtered_petfood_list[index]["weight"]}',
+              //   style: TextStyle(
+              //     fontSize: 10.sp,
+              //   ),
+              // )
             ],
           ),
         ),

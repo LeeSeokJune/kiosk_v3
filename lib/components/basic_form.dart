@@ -104,17 +104,49 @@ class BasicForm extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 10.w),
-                              Container(
-                                width: 60.w,
-                                height: 30.h,
-                                decoration: BoxDecoration(color: main_color, borderRadius: BorderRadius.circular(10.w)),
-                                child: Center(
-                                    child: Text(
-                                  '검색',
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12.sp),
-                                )),
-                              )
+                              InkWell(
+                                child: Container(
+                                  width: 60.w,
+                                  height: 30.h,
+                                  decoration: BoxDecoration(color: main_color, borderRadius: BorderRadius.circular(10.w)),
+                                  child: Center(
+                                      child: Text(
+                                    '검색',
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12.sp),
+                                  )),
+                                ),
+                                onTap: () {
+                                  screen_controller.search_petfood_function();
+                                },
+                              ),
                             ],
+                          ),
+                          SizedBox(height: 20.h),
+                          Visibility(
+                            visible: screen_controller.search_text_bool(),
+                            child: Container(
+                              width: 400.w,
+                              height: 200.h,
+                              decoration: test_line,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: screen_controller.search_petfood_length.value,
+                                itemBuilder: ((context, index) {
+                                  return Container(
+                                    width: 100.w,
+                                    height: 150.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.w),
+                                      border: Border.all(color: main_color),
+                                    ),
+                                    child: Column(children: [
+                                      Image.asset('assets/images/A000001.png'),
+                                      Text(screen_controller.search_petfood[index]['name']),
+                                    ]),
+                                  );
+                                }),
+                              ),
+                            ),
                           ),
                         ],
                       ),
